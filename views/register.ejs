@@ -1,0 +1,35 @@
+<body>
+  <%- include('layouts/navbar') %> 
+  <h1 id="title">Register Form</h1>
+      <form id="survey-form" action="/add" method="POST">
+          <label for="username" id="name-label">
+              Name 
+              <input type="text" id="username" placeholder="Enter your username" name="username" required/>
+          </label>
+          <label for="email" id="email-label">
+              Email 
+              <input type="text" id="email" placeholder="Enter your email" name="email" required/>
+          </label>
+          <label for="password" id="password-label">
+              Password 
+              <input type="text" id="password" placeholder="Enter your password" name="password" required/>
+          </label>
+          <label for="firstname" id="firstname-label">
+              First Name
+              <input type="text" id="firstname" placeholder="Enter your firstname" name="firstname" required/>
+          </label>
+          <label for="lastname" id="lastname-label">
+              Last Name
+              <input type="text" id="lastname" placeholder="Enter your lastname" name="lastname" required/>
+          </label>
+          <label for="age" id="number-label">
+              Age 
+              <input type="number" id="age" placeholder="how old are you" name="age" min="7" max="40"/>
+          </label>
+          <label for="phone" id="phone-label">
+              Mobile phone
+              <input type="text" id="phone" placeholder="enter your mobile phone" name="phone" required/>
+          </label>
+          <button class="btn btn-primary badge-pill" type="submit">Register</button>
+      </form>
+</body>
