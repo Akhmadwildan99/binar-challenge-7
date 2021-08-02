@@ -2,6 +2,8 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash = require('connect-flash');
 var logger = require('morgan');
 const expressLayout = require('express-ejs-layouts');
 
@@ -22,6 +24,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressLayout);
 app.set("layout", "./layouts/main-layouts");
+app.use(cookieParser('secret'));// Konfigurasi flash
+app.use(
+    session({
+        cookie: {maxAge: 6000},
+        secret: 'secret',
+        resave: true,
+        saveUninitialized: true,
+    })
+);
+app.use(flash());
 
 app.use(router);
 app.use(api);

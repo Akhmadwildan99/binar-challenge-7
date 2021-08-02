@@ -8,7 +8,8 @@ module.exports = {
     register: (req, res) => {
         res.render('register', {
             title: 'Halaman Register',
-            css: 'register'
+            css: 'register',
+            msg: req.flash('msg'),
         })
     }
 }
