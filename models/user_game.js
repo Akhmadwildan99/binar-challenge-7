@@ -23,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     checkPassword = password => bcrypt.compareSync(password, this.password);
     generateToken = () => {
       const payload = {
-        id :this.id,
-        username:this.username,
+        id : this.id,
+        username: this.username,
         email: this.email,
         isAdmin: this.isAdmin
       }
