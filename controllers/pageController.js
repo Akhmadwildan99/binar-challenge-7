@@ -11,5 +11,11 @@ module.exports = {
             css: 'register',
             msg: req.flash('msg'),
         })
+    },
+    login: (req, res) => {
+        res.render('login', {
+            title: 'Halman Login',
+            css: 'login'
+        })
     }
 }
