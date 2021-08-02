@@ -63,9 +63,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   user_game.init({
-    username: DataTypes.STRING,
+    username: {
+      type: DataTypes.STRING,
+      unique: true,
+    },
     password: DataTypes.STRING,
-    email: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: true
+      }
+    },
     isAdmin: DataTypes.BOOLEAN
   }, {
     sequelize,
