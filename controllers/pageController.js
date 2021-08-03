@@ -1,3 +1,5 @@
+const {user_game, user_biodata} = require('../models')
+
 module.exports = {
     home: (req, res) => {
         res.render('landingPage', {
@@ -26,5 +28,19 @@ module.exports = {
             msg: req.flash('msg'),
         })
     },
+    dashboard: (req, res) => {
+            user_game.findAll({include: user_biodata})
+                .then((datas) => {
+                    res.render('dashboard', {
+                        title: 'Halman Dashboard',
+                        css: 'dashboard',
+                        datas,
+                        user_biodata
+                    })
+                }).catch(err=> {
+                    res.status(500).json(err)
+                })
+        
+    }
     
 }

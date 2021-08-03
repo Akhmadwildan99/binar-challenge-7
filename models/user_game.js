@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasOne(models.user_biodata,{
+        foreignKey: 'userId'
+      })
     }
     static #encrypt = (password) => bcrypt.hashSync(password, 10);
     static register = ({username, password, email, isAdmin}) => {

@@ -1,0 +1,44 @@
+<body>
+    <%- include('layouts/navbar') %> 
+    <h1 id="title">DASHBOARD</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                    </thead>
+                    <% if (datas.length === 0) { %>
+                        <tr>
+                            <th colspan="6">
+                                <div class="alert alert-danger" role="alert">
+                                    Data User masih kossong!
+                                </div>
+                            </th>
+                        </tr>
+                    <% } %>
+                    <% datas.forEach((user, i )=> { %>
+                        <tbody>
+                        <tr>
+                            <th scope="row"><%= i + 1  %> </th>
+                            <td><%= user.username %> </td>
+                            <td><%= user.email%> </td>
+                            <td><%= user.firstname  %> </td>
+                            <td><%= user.lastname %> </td>
+                            
+                        </tr>
+                        </tbody>
+                    <% }) %>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+
+</body>
