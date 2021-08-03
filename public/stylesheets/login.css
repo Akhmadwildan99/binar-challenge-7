@@ -86,9 +86,10 @@ button{
     border-radius: 5px;
 }
 
-.alert-danger{
+.alert-success{
     max-width: 500px !important;
     margin: 0 auto;
+    font-size: 30px;
 }
 
 .hidden {

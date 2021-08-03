@@ -1,0 +1,27 @@
+<body>
+    <%- include('layouts/navbar') %> 
+    <h1 id="title">Login User Form</h1>
+    <% if (msg.length !== 0 ) { %>
+        <div class="alert alert-success" role="alert">
+            <%= msg %> 
+          </div>
+        <% } %>
+        <form id="survey-form" action="/loginUser" method="POST">
+            <label for="username" id="name-label">
+                Username 
+                <input type="text" id="username" placeholder="Enter your username" name="username" required/>
+            </label>
+            <label for="password" id="password-label">
+                Password 
+                <input type="text" id="password" placeholder="Enter your password" name="password" required/>
+            </label>
+           
+            <button class="btn btn-primary badge-pill" type="submit">Register</button>
+        </form>
+        <script>
+          const alert = document.querySelector('.alert')
+          setTimeout(()=>{
+              alert.classList.add('hidden');
+          }, 3000);
+      </script>
+  </body>

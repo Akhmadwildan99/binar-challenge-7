@@ -12,10 +12,19 @@ module.exports = {
             msg: req.flash('msg'),
         })
     },
-    login: (req, res) => {
-        res.render('login', {
-            title: 'Halman Login',
-            css: 'login'
+    loginAdmin: (req, res) => {
+        res.render('loginAdmin', {
+            title: 'Halman Login Admin',
+            css: 'login',
+            msg: req.flash('msg'),
         })
-    }
+    },
+    loginUser: (req, res) => {
+        res.render('loginUser', {
+            title: 'Halman Login USer',
+            css: 'login',
+            msg: req.flash('msg'),
+        })
+    },
+    
 }

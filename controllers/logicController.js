@@ -22,7 +22,8 @@ module.exports = {
                     }).catch((error)=>{
                         console.log(error)
                     })
-                    res.redirect('/')
+                    req.flash('msg', 'Data Admin berhasil ditambahkan!')
+                    res.redirect('/loginAdmin')
                 }).catch((error)=>{
                     req.flash('msg', 'periksa kembali username, email, dan no HP!')
                     res.redirect('/register')
@@ -45,12 +46,14 @@ module.exports = {
                     }).catch((error)=>{
                         console.log(error);
                     })
-                    res.redirect('/')
+                    req.flash('msg', 'Data user berhasil ditambahkan!')
+                    res.redirect('/loginUser')
                 }).catch((error)=>{
                     req.flash('msg', 'periksa kembali username, email, dan no HP!')
                     res.redirect('/register')
                 })
             }
         
-    }
+    },
+    
 }
