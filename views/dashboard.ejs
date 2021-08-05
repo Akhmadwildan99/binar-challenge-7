@@ -1,10 +1,11 @@
+<%- include('layouts/header') %> 
 <body>
     <%- include('layouts/navbar') %> 
-    <h1 id="title">DASHBOARD</h1>
+    <h1 id="title">DASHBOARD DATA USER</h1>
     <div class="container">
         <div class="row">
-            <div class="col-6">
-                <table class="table">
+            <div class="col-md-12">
+                <table class="table table-info">
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col">No</th>
@@ -12,9 +13,11 @@
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
-                    <% if (datas.length === 0) { %>
+                    <% if (users.length === 0) { %>
                         <tr>
                             <th colspan="6">
                                 <div class="alert alert-danger" role="alert">
@@ -23,15 +26,16 @@
                             </th>
                         </tr>
                     <% } %>
-                    <% datas.forEach((user, i )=> { %>
+                    <% users.forEach((user, i )=> { %>
                         <tbody>
                         <tr>
                             <th scope="row"><%= i + 1  %> </th>
                             <td><%= user.username %> </td>
+                            <td><%= user.Biodatum.firstname %> </td>
+                            <td><%= user.Biodatum.lastname %> </td>
                             <td><%= user.email%> </td>
-                            <td><%= user.firstname  %> </td>
-                            <td><%= user.lastname %> </td>
-                            
+                            <td><%= user.Biodatum.phone%> </td>
+                            <td><a href="/delete/data/<%= user.id %>"><i class="bi bi-trash"></i></a></td>
                         </tr>
                         </tbody>
                     <% }) %>
@@ -42,3 +46,5 @@
     
 
 </body>
+
+<%- include('layouts/footer') %> 

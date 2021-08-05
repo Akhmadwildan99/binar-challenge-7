@@ -23,6 +23,8 @@ body {
     max-height: 2000px;
 }
 
+
+
 /* Navbar */
 .navbar {
     background-color: rgba(0,  0, 0, 0.3);
@@ -52,4 +54,8 @@ h1#title{
     margin-bottom: 20px;
     text-align: center;
     color: white;
+}
+
+i {
+    font-size: 20px;
 }

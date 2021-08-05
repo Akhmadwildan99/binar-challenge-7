@@ -1,4 +1,4 @@
-const {user_game, user_biodata} = require('../models');
+const {user_game, Biodata} = require('../models');
 
 module.exports = {
     register: async (req, res) => {
@@ -11,7 +11,7 @@ module.exports = {
                     email: email,
                     isAdmin: true
                 }).then((user_game)=>{
-                    user_biodata.create({
+                    Biodata.create({
                         firstname: firstname,
                         lastname: lastname,
                         age: age, 
@@ -35,7 +35,7 @@ module.exports = {
                     email: email,
                     isAdmin: false
                 }).then((user_game)=>{
-                    user_biodata.create({
+                    Biodata.create({
                         firstname: firstname,
                         lastname: lastname,
                         age: age, 

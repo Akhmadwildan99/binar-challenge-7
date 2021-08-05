@@ -1,4 +1,15 @@
-const {user_game} = require('../models');
+const {user_game, Biodata} = require('../models');
+
+function format(user) {
+    const {id, username, email} = user;
+    return {
+        id,
+        username,
+        email,
+        token: user.generateToken()
+    }
+}
+
 
 module.exports = {
     registerApi: async (req, res) => {
@@ -30,5 +41,25 @@ module.exports = {
         }
         
 
+    },
+    show: (req, res) => {
+        user_game.findAll({include: Biodata})
+            .then(data => res.status(200).json(data))
+            .catch(err => {
+                res.json(err)
+            })
+    },
+    login: (req, res) => {
+        user_game.authenticate(req.body)
+            .then((user)=> {
+                res.status(200).json(
+                    format(user)
+                )
+            })
+    },
+    whoami: (req, res) => {
+        const currentUser = req.user
+        res.staus(200).json(currentUser)
     }
+       
 }

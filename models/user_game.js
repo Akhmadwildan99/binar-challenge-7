@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models.user_biodata,{
+      this.hasOne(models.Biodata,{
         foreignKey: 'userId'
       })
     }
@@ -38,9 +38,9 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     /* Method Authenticate, untuk login Admin*/
-    static authenticateAdmin = async ({username, password, isAdmin}) => {
+    static authenticate = async ({username, password}) => {
       try {
-        const user = await this.findOne({where: {username, isAdmin: true}});
+        const user = await this.findOne({where: {username}});
         if(!user) return Promise.reject("User not Found!");
         const isPasswordValid = user.checkPassword(password);
         if(!isPasswordValid) return Promise.reject("Wrong password!");
@@ -51,19 +51,6 @@ module.exports = (sequelize, DataTypes) => {
       /* Akhir dari semua yang berhubungan dengan login */
     }
 
-    /* Method Authenticate, untuk login User*/
-    static authenticateAdmin = async ({username, password, isAdmin}) => {
-      try {
-        const user = await this.findOne({where: {username, isAdmin: false}});
-        if(!user) return Promise.reject("User not Found!");
-        const isPasswordValid = user.checkPassword(password);
-        if(!isPasswordValid) return Promise.reject("Wrong password!");
-        return Promise.resolve(user);
-      } catch(err) {
-        return Promise.reject(err);
-      }
-      /* Akhir dari semua yang berhubungan dengan login */
-    }
   };
   user_game.init({
     username: {
