@@ -59,7 +59,7 @@ module.exports = {
     },
     whoami: (req, res) => {
         const currentUser = req.user
-        res.staus(200).json(currentUser)
+        res.json(currentUser)
     }
        
 }

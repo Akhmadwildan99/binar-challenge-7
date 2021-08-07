@@ -1,3 +1,4 @@
+const passport = require('../lib/passport');
 const {user_game, Biodata} = require('../models');
 
 module.exports = {
@@ -54,6 +55,6 @@ module.exports = {
                 })
             }
         
-    },
+    }
     
 }

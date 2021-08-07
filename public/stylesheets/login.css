@@ -67,7 +67,8 @@ label {
     margin-bottom: 12px;
 }
 
-input[type='text'] {
+input[type='text'],
+input[type='password']{
     display: block;
     width: 500px;
     height: 30px;
