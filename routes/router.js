@@ -12,9 +12,9 @@ router.get('/', pages.home);
 router.get('/register', pages.register);
 router.get('/loginAdmin', pages.loginAdmin);
 router.get('/loginUser', pages.loginUser);
-router.get('/dashboard', restrict, pages.dashboard);
+router.get('/dashboard', pages.dashboard);
 router.post('/register/data', logic.register);
-router.post('/login/data', 
+router.post('/login', 
 passport.authenticate('local',{ 
     successRedirect: '/',
     failureRedirect: '/dashboard',

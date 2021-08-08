@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       const encryptedPassword = this.#encrypt(password);
       return this.create({username, password: encryptedPassword, email, isAdmin})
     }
-    checkPassword = password => bcrypt.compareSync(password, this.password);
+    checkPassword = (password) => bcrypt.compareSync(password, this.password)
     generateToken = () => {
       const payload = {
         id : this.id,
@@ -39,9 +39,9 @@ module.exports = (sequelize, DataTypes) => {
     /* Method Authenticate, untuk login Admin*/
     static authenticate = async ({username, password}) => {
       try {
-        const user = await this.findOne({where: {username}});
+        const user = await this.findOne({where: {username, password}});
         if(!user) return Promise.reject("Admin not Found!");
-        const isPasswordValid = user.checkPassword(password);
+        const isPasswordValid = user.checkPassword(password)
         if(!isPasswordValid) return Promise.reject("Wrong password!");
         return Promise.resolve(user);
       } catch(err) {
