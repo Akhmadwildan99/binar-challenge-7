@@ -2,6 +2,11 @@
 <body>
     <%- include('layouts/navbar') %> 
     <h1 id="title">DASHBOARD DATA USER</h1>
+    <% if (msg.length !== 0 ) { %>
+        <div class="alert alert-success" role="alert">
+            <%= msg %> 
+          </div>
+        <% } %>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -19,7 +24,7 @@
                     </thead>
                     <% if (users.length === 0) { %>
                         <tr>
-                            <th colspan="6">
+                            <th colspan="12">
                                 <div class="alert alert-danger" role="alert">
                                     Data User masih kossong!
                                 </div>
@@ -35,7 +40,7 @@
                             <td><%= user.Biodatum.lastname %> </td>
                             <td><%= user.email%> </td>
                             <td><%= user.Biodatum.phone%> </td>
-                            <td><a href="/delete/data/<%= user.id %>"><i class="bi bi-trash"></i></a></td>
+                            <td><a href="/delete/data/<%= user.id %>"><i class="bi bi-trash"></i></a> <a class="btn btn-primary badge badge-pill" href="/update/data/<%= user.id %>">edit </a></td>
                         </tr>
                         </tbody>
                     <% }) %>
@@ -43,7 +48,12 @@
             </div>
         </div>
     </div>
-    
+    <script>
+        const alert = document.querySelector('.alert')
+        setTimeout(()=>{
+            alert.classList.add('hidden');
+        }, 3000);
+    </script>
 
 </body>
 

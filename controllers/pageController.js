@@ -1,4 +1,5 @@
-const {user_game, Biodata} = require('../models')
+const {user_game, Biodata} = require('../models');
+
 
 module.exports = {
     home: (req, res) => {
@@ -40,8 +41,31 @@ module.exports = {
             res.render('dashboard', {
              title: 'Halman Dashboard',
              css: 'dashboard.css',
+             msg: req.flash('msg'),
              users,
              Biodata
+         })    
+        } catch (err) {
+            res.status(500).json(err,{
+                mssage: "tidak bisa menampilkan data dashbord"
+            });
+        }
+           
+    },
+    update: async (req, res) => {
+        try {
+            const user = await user_game.findOne({
+                where: {
+                    id: req.params.id
+                }
+                
+            });
+            const user_id = req.params.id
+            res.render('update', {
+             title: 'Halman Edit',
+             css: 'register.css',
+             user,
+             user_id
          })    
         } catch (err) {
             res.status(500).json(err,{

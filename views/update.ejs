@@ -1,0 +1,22 @@
+<%- include('layouts/header') %> 
+<body>
+  <%- include('layouts/navbar') %> 
+  <h1 id="title">Edit Form</h1>
+      <form id="survey-form" action="/update/data/<%= user_id %>" method="POST">
+          <label for="username" id="name-label">
+              Username 
+              <input type="text" id="username" placeholder="Enter your username" name="username" value="<%= user.username %>" required/>
+          </label>
+          <label for="email" id="email-label">
+              Email 
+              <input type="text" id="email" placeholder="Enter your email" name="email" value="<%= user.email %>" required/>
+          </label>
+          <label for="password" id="password-label">
+              Password 
+              <input type="password" id="password" placeholder="Enter your password" name="password"  required/>
+          </label>
+          <button class="btn btn-primary badge-pill" type="submit">Register</button>
+      </form>
+</body>
+
+<%- include('layouts/footer') %> 

@@ -13,12 +13,11 @@ router.get('/register', pages.register);
 router.get('/loginAdmin', pages.loginAdmin);
 router.get('/loginUser', pages.loginUser);
 router.get('/dashboard', pages.dashboard);
+router.get('/delete/data/:id', logic.delete);
+router.get('/update/data/:id', pages.update);
+router.post('/update/data/:id', logic.updateData);
 router.post('/register/data', logic.register);
-router.post('/login', 
-passport.authenticate('local',{ 
-    successRedirect: '/',
-    failureRedirect: '/dashboard',
-    failureFlash: true 
-}));
+router.post('/login', logic.loginAdmin);
 
-module.exports = router;
+
+module.exports = router

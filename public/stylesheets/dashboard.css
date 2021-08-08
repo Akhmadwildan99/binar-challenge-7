@@ -59,3 +59,12 @@ h1#title{
 i {
     font-size: 20px;
 }
+
+.alert-success{
+    max-width: 500px !important;
+    margin: 0 auto;
+    font-size: 30px;
+}
+.hidden {
+    display: none;
+}
