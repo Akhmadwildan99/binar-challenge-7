@@ -73,6 +73,12 @@ module.exports = {
             });
         }
            
-    }
+    },
+    games: (req, res) => {
+        res.render('game', {
+            title: 'Halman Game',
+            css: 'game.css'
+        })    
+    },
     
 }

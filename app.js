@@ -6,7 +6,7 @@ const session = require('express-session');
 const flash = require('express-flash');
 const router = require('./routes/router');
 const api = require('./routes/api');
-// const room = require('./routes/room')
+
 
 const app = express();
 
@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser('secret'));// Konfigurasi flash
 app.use(
   session({
-    cookie : { secure : true, maxAge : (4 * 60 * 60 * 1000) },
+    cookie : { secure : true },
     saveUninitialized: false,
     resave: false,
     secret: "secret",
@@ -29,7 +29,7 @@ app.use(flash());
 
 app.use(router);
 app.use(api);
-// app.use(room);
+
 
 const passport = require('./lib/passport');
 const passportJwt = require('./lib/passportJwt');
@@ -52,6 +52,22 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.use((err, req, res, next)=>{
+  res.status(500);
+  res.render('err', {
+      title: 'Halaman error',
+      css: 'error.css'
+  });
+});
+
+app.use((req, res, next)=>{
+  res.status(404);
+  res.render('notfound', {
+      title: 'Halaman error',
+      css: 'error.css'
+  });
 });
 
 module.exports = app;

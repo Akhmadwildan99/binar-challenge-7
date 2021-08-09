@@ -4,9 +4,10 @@ const api = require('../controllers/apiController');
 const restrictJwt = require('../midlewares/restrictJwt')
 
 
-/* GET users listing. */
+/* GET & POST users listing. */
 router.post('/api/v1/register', api.registerApi);
 router.get('/api/v1/allData', api.show);
+router.get('/api/v1/userHistory', api.history);
 router.post('/api/v1/auth', api.login);
 router.get('/api/v1/auth/whoami', restrictJwt, api.whoami);
 router.post('/api/v1/generate/room', restrictJwt, api.generateRoom);

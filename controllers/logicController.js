@@ -59,8 +59,7 @@ module.exports = {
     },
     loginAdmin: 
         passport.authenticate('local',{ 
-            successRedirect: '/dashboard',
-            failureRedirect: '/loginAdmin',
+            failureRedirect: '/dashboard',
             failureFlash: true 
         }),
     delete: (req, res) => {
@@ -107,6 +106,44 @@ module.exports = {
             req.flash('msg', 'periksa kembali username, email, dan no HP!')
             res.redirect('/update/data/:id')
         })
+    },
+    loginUser: async (req, res) => {
+        try {
+            const {username, password} = req.body
+            const user = await  user_game.findOne({
+                where:{
+                    username: username,
+                    isAdmin: false
+                }
+            });
+            if(!user) return res.redirect('/loginUser')
+            const isValid = await bcrypt.compare(password, user.password);
+            if(!isValid) return res.redirect('/loginUser')
+            return res.redirect('/game')   
+        } catch (error) {
+            return res.redirect('/loginUser')
+        }
+            
+                
     }
-    
+            // const comparePassword = bcrypt.compareSync(password, user_game.password)
+            // user_game.findOne({
+            //     where: {
+            //         username: username,
+            //         isAdmin: false,
+            //         password: comparePassword
+            //     }
+            // })
+            // .then(()=> {
+            //     res.redirect('/game')
+            // })
+            // .catch(err => {
+            //     req.flash('msg', 'perisksa kembali data yang anda masukan!')
+            //     res.redirect('/loginUser')
+            // })
+
+            
+        
+
 }
+    

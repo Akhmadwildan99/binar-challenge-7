@@ -50,6 +50,13 @@ module.exports = {
                 res.json(err)
             })
     },
+    history: (req, res) => {
+        user_game.findAll({include: room})
+            .then(data => res.status(200).json(data))
+            .catch(err => {
+                res.json(err)
+            })
+    },
     login: (req, res) => {
         user_game.authenticate(req.body)
             .then((user)=> {
@@ -115,15 +122,8 @@ module.exports = {
             })
 
     },
-    result: async (req, res) => {
+    result: (req, res) => {
         const { playerOne, playerTwo } = req.body
-        // const getHasil = (playerOne, playerTwo) => {
-        //     if( playerOneId == playerTwo) return 'Draw';  
-        //     if( playerOne == 'rock')return( playerTwo == 'scissors') ? 'Player One' : 'Player Two';
-        //     if( playerOne == 'scissors')return( playerTwo == 'rock') ? 'player Two' : 'Player One';
-        //     if( player == 'paper')return( comp == 'scissors') ? 'player Two' : 'player One';  
-        //  }
-        // const hasil =  getHasil(playerOne, playerTwo)
         room.findOne({where:
             {
                 playerOneId: req.params.id
