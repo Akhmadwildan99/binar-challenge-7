@@ -3,7 +3,6 @@ var router = express.Router();
 const pages = require('../controllers/pageController');
 const logic = require('../controllers/logicController');
 const restrict = require('../midlewares/restrict');
-const passport = require('../lib/passport')
 
 
 

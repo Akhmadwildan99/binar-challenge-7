@@ -2,9 +2,8 @@
 const {
   Model
 } = require('sequelize');
-const UUID = require('uuid');
 module.exports = (sequelize, DataTypes) => {
-  class Room extends Model {
+  class room extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -14,25 +13,19 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  Room.init({
-    id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      allowNull: false
-    },
-    playerOneId: DataTypes.INTEGER,
-    playerTwoId: DataTypes.INTEGER,
-    winnerId:{
-      type:  DataTypes.INTEGER,
-      allowNull: true
-    },
+  room.init({
+    userId: DataTypes.INTEGER,
+    playerOneId: DataTypes.UUID,
+    playerTwoId: DataTypes.UUID,
     matchInfo: {
       type: DataTypes.ARRAY(DataTypes.STRING),
-      defaultValue: ['','','','','']
-    }
+      defaultValue: ['', '', '']
+    },
+    playerOne: DataTypes.STRING,
+    playerTwo: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Room',
+    modelName: 'room',
   });
-  return Room;
+  return room;
 };

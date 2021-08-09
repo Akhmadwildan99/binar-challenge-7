@@ -4,14 +4,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('express-flash');
-
-
-
-
-
 const router = require('./routes/router');
 const api = require('./routes/api');
-const room = require('./routes/room')
+// const room = require('./routes/room')
 
 const app = express();
 
@@ -21,20 +16,20 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cookieParser());// Konfigurasi flash
+app.use(cookieParser('secret'));// Konfigurasi flash
 app.use(
-    session({
-        secret: 'my secret',
-        resave: false,
-        saveUninitialized: false,
-        cookie: {sameSite: 'strict'}
-    })
+  session({
+    cookie : { secure : true, maxAge : (4 * 60 * 60 * 1000) },
+    saveUninitialized: false,
+    resave: false,
+    secret: "secret",
+  })
 );
 app.use(flash());
 
 app.use(router);
 app.use(api);
-app.use(room);
+// app.use(room);
 
 const passport = require('./lib/passport');
 const passportJwt = require('./lib/passportJwt');

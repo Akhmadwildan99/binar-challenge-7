@@ -57,11 +57,12 @@ module.exports = {
            }
         
     },
-    loginAdmin: passport.authenticate('local',{ 
-        successRedirect: '/dashboard',
-        failureRedirect: '/loginAdmin',
-        failureFlash: true 
-    }),
+    loginAdmin: 
+        passport.authenticate('local',{ 
+            successRedirect: '/dashboard',
+            failureRedirect: '/loginAdmin',
+            failureFlash: true 
+        }),
     delete: (req, res) => {
         const user = user_game.findOne({
             where: {id: req.params.id}

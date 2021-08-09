@@ -1,30 +1,29 @@
 'use strict';
-const UUID = require('uuid')
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Rooms', {
+    await queryInterface.createTable('rooms', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.UUID,
-        primaryKey: true,
-        allowNull: false
+      userId: {
+        type: Sequelize.INTEGER
       },
       playerOneId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID
       },
       playerTwoId: {
-        type: Sequelize.INTEGER
-      },
-      winnerId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID
       },
       matchInfo: {
+        type: Sequelize.STRING
+      },
+      playerOne: {
+        type: Sequelize.STRING
+      },
+      playerTwo: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -38,6 +37,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Rooms');
+    await queryInterface.dropTable('rooms');
   }
 };
