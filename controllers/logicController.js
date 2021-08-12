@@ -126,24 +126,7 @@ module.exports = {
             
                 
     }
-            // const comparePassword = bcrypt.compareSync(password, user_game.password)
-            // user_game.findOne({
-            //     where: {
-            //         username: username,
-            //         isAdmin: false,
-            //         password: comparePassword
-            //     }
-            // })
-            // .then(()=> {
-            //     res.redirect('/game')
-            // })
-            // .catch(err => {
-            //     req.flash('msg', 'perisksa kembali data yang anda masukan!')
-            //     res.redirect('/loginUser')
-            // })
-
-            
-        
+       
 
 }
     
