@@ -54,7 +54,7 @@ module.exports = {
             })
     },
     history: (req, res) => {
-        user_game.findAll({include: room})
+        Room_game.findAll()
             .then(data => res.status(200).json(data))
             .catch(err => {
                 res.json(err)
@@ -158,16 +158,7 @@ module.exports = {
                         break;
                     }
                 }
-                return Room_game.update({matchInfo: matchInfo},
-                    {where: {id: req.params.id}})
-                    .then((match)=>{
-                        res.status(200).json(match);
-                    })
-                    .catch(err => {
-                        res.status(400).json({
-                            message: "Gagal memasukan hasil pilihan pemain!"
-                        })
-                    })
+                return matchInfo
             } else if(whoPlay(player) == 'Player 2') {
                 for(let i = 0; i < matchInfo.length; i+=2) {
                     if(matchInfo[i] == '') {
@@ -175,20 +166,20 @@ module.exports = {
                         break;
                     }
                 }
-                return Room_game.update({matchInfo: matchInfo},
-                    {where: {id: req.params.id}})
-                    .then((match)=>{
-                        res.status(200).json(match);
-                    })
-                    .catch(err => {
-                        res.status(400).json({
-                            message: "Gagal memasukan hasil pilihan pemain!"
-                        })
-                    })
+                return matchInfo
             }
         
 
-            
+            Room_game.update({matchInfo: matchInfo},
+            {where: {id: req.params.id}})
+            .then((match)=>{
+                res.status(200).json(match);
+            })
+            .catch(err => {
+                res.status(400).json({
+                    message: "Gagal memasukan hasil pilihan pemain!"
+                })
+            })
         
 
     },
